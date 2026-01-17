@@ -1,0 +1,16 @@
+railtypetable {
+	MGLV,
+	EDS_MAGLEV: [LCAI, LCAE, MGLV],
+	INDUCTION_MGLV: [TAAI, TAA3, LBAI, LBA3, MGLV],
+	THREEPHASE_MGLV: [TAAT, LBAT, TAAI, TAA3, LBAI, LBA3, MGLV],
+	THREEPHASEHS_MGLV: [TCAT, TBAT, LCAT, LBAT, MGLV],
+	MBAHN_MGLV: [LAAT, MGLV],
+}
+
+//LAAT: MBahn
+//LBAT: Zhuifengzhe / Linglonghao
+//LCAT: Transrapid
+//LBA3: Linimo
+//LCA3: SUMA-550
+//LCAE: SC-maglev
+//LBAN: Inductrack: N for nitrogen

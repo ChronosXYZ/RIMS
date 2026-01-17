@@ -1,0 +1,177 @@
+//WINDCHASERCAR
+
+//Spritesets
+spriteset (SPRITESET_WINDCHASERCAR_BACK, "grf/WINDCHASER.png") {
+	TEMP_DOUBLE_8_BACK(48,1,0)
+}
+spritegroup SPRITEGROUP_WINDCHASERCAR_BACK {
+	loading: SPRITESET_WINDCHASERCAR_BACK;
+	loaded:  SPRITESET_WINDCHASERCAR_BACK;
+}
+
+switch(FEAT_TRAINS, SELF, switch_GRF_WINDCHASERCAR, position_in_consist_from_end) {
+	0:      SPRITEGROUP_WINDCHASERCAR_BACK;
+    SPRITEGROUP_WINDCHASER;
+}
+
+//2cc
+spriteset (SPRITESET_WINDCHASERCAR_BACK_CC, "grf/WINDCHASER.png") {
+	TEMP_DOUBLE_8_BACK(48+72,1,0)
+}
+spritegroup SPRITEGROUP_WINDCHASERCAR_BACK_CC {
+	loading: SPRITESET_WINDCHASERCAR_BACK_CC;
+	loaded:  SPRITESET_WINDCHASERCAR_BACK_CC;
+}
+
+switch(FEAT_TRAINS, SELF, switch_GRF_WINDCHASERCAR_CC, position_in_consist_from_end) {
+	0:      SPRITEGROUP_WINDCHASERCAR_BACK_CC;
+    SPRITEGROUP_WINDCHASER_CC;
+}
+
+switch(FEAT_TRAINS,SELF,switch_WINDCHASERCAR_CC,PARAM2CC){
+    1: return switch_GRF_WINDCHASERCAR_CC;
+       return switch_GRF_WINDCHASERCAR;
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASER_PASS_CC,PARAM2CC){
+    1: return SPRITEGROUP_WINDCHASER_WAG_CC;
+       return SPRITEGROUP_WINDCHASER_WAG;
+}
+
+//Purchase
+spriteset (SPRITESET_PURCH_WINDCHASERCAR, "grf/WINDCHASER.png") {
+	TEMP_PURCH_DUAL_MU(176,0,0,1)
+}
+spriteset (SPRITESET_PURCH_WINDCHASERCAR_COMP, "grf/WINDCHASER.png") {
+	TEMP_PURCH_DUAL_MU_COM(176,28,0,1)
+}
+spriteset (SPRITESET_PURCH_WINDCHASERCAR_CC, "grf/WINDCHASER.png") {
+	TEMP_PURCH_DUAL_MU(176,0+56,0,1)
+}
+spriteset (SPRITESET_PURCH_WINDCHASERCAR_COMP_CC, "grf/WINDCHASER.png") {
+	TEMP_PURCH_DUAL_MU_COM(176,28+56,0,1)
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASERCAR_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_WINDCHASERCAR_COMP;
+       return SPRITESET_PURCH_WINDCHASERCAR;
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASERCAR_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_WINDCHASERCAR_COMP_CC;
+       return SPRITESET_PURCH_WINDCHASERCAR_CC;
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASERCAR_purch_CC,PARAM2CC){
+    1: return switch_WINDCHASERCAR_purchase_CC;
+       return switch_WINDCHASERCAR_purchase;
+}
+//WAGON PURCH
+spriteset (SPRITESET_PURCH_WINDCHASER_PASS, "grf/WINDCHASER.png") {
+	TEMP_PURCH_SINGLE_NEW(176,14,0,1)
+}
+spriteset (SPRITESET_PURCH_WINDCHASER_PASS_COMP, "grf/WINDCHASER.png") {
+	TEMP_PURCH_SINGLE_NEW_COM(176,28+14,0,1)
+}
+spriteset (SPRITESET_PURCH_WINDCHASER_PASS_CC, "grf/WINDCHASER.png") {
+	TEMP_PURCH_SINGLE_NEW(176,14+56,0,1)
+}
+spriteset (SPRITESET_PURCH_WINDCHASER_PASS_COMP_CC, "grf/WINDCHASER.png") {
+	TEMP_PURCH_SINGLE_NEW_COM(176,28+56+14,0,1)
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASER_PASS_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_WINDCHASER_PASS_COMP;
+       return SPRITESET_PURCH_WINDCHASER_PASS;
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASER_PASS_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_WINDCHASER_PASS_COMP_CC;
+       return SPRITESET_PURCH_WINDCHASER_PASS_CC;
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASER_PASS_purch_CC,PARAM2CC){
+    1: return switch_WINDCHASER_PASS_purchase_CC;
+       return switch_WINDCHASER_PASS_purchase;
+}
+//WAGON
+item(FEAT_TRAINS, CHINA_PASS, ITEM_CHINA_PASS) {
+	property {
+		//Basic
+		model_life:	VEHICLE_NEVER_EXPIRES;
+		vehicle_life: 35;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_URBAN
+		running_cost_base: RUNNING_COST_ELECTRIC;
+		misc_flags: bitmask(TRAIN_FLAG_2CC);
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: THREEPHASE_MGLV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		refit_cost: 0;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Trains
+		name: string(STR_NAME_CHINA_PASS);
+		REGIONCAR2(CHINA, NOREGION, LSCAR);
+		introduction_date:	date(2012,01,01);
+		cost_factor: 37;
+		running_cost_factor: 6;
+		speed: 0 km/h;
+		power: 0 kW;
+		cargo_capacity: 121;
+		weight: 18 tons;
+		
+		length: 8;
+		dual_headed: 0;
+	}
+	graphics {
+		default: switch_WINDCHASER_PASS_CC; // Use this switch to set sprite
+		purchase: switch_WINDCHASER_PASS_purch_CC;
+		additional_text: return string(STR_DESC_CHINA_PASS);
+	}
+}
+//HEADS
+item(FEAT_TRAINS, WINDCHASERCAR, ITEM_WINDCHASERCAR) {
+	property {
+		//Constants
+		model_life:	VEHICLE_NEVER_EXPIRES;
+		reliability_decay: 7;
+		vehicle_life: 35;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_URBAN
+		running_cost_base: RUNNING_COST_ELECTRIC;
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: THREEPHASE_MGLV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		refit_cost: 0;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Variables
+		name:	string(STR_NAME_WINDCHASER);
+		REGIONCAR2(CHINA, NOREGION, LSCAR);
+		introduction_date:	date(2012,01,01);
+		cost_factor: 61;
+		running_cost_factor: 44;
+		speed: 120 km/h;
+		power: 446 kW;
+		cargo_capacity: 121;
+		weight: 18 tons;
+		air_drag_coefficient: 0.067;
+		
+		length: 8;
+		dual_headed: 1;
+		misc_flags: bitmask(TRAIN_FLAG_TILT, TRAIN_FLAG_MU);
+	}
+	graphics {
+		default: switch_WINDCHASERCAR_CC; // Use this group
+		purchase: switch_WINDCHASERCAR_purch_CC; // Use this set for the menu
+		additional_text: return string(STR_DESC_WINDCHASERCAR);
+		can_attach_wagon: switch_can_attach_vehicle;
+	}
+	livery_override (ITEM_CHINA_PASS) {
+		power: 149;	
+		cargo_capacity: 121;
+		default: switch_WINDCHASER_PASS_CC;
+	}
+}

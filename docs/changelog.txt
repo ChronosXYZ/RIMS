@@ -1,0 +1,60 @@
+1.6.1 - 18/01/2026
+
+Fixed: Enable L0 Shinkansen passenger coaches - it was mistakenly disabled
+
+1.6.0 - 27/06/2020
+------------------------------------------------------------------------
+Fixed: M-Bahn not connecting to itself
+
+1.5.0 - 17/11/2019
+------------------------------------------------------------------------
+Changed: The way cost parameters work, in hopes of working better with the basecost newgrf
+Removed: Separate parameter for high speed train construction
+Fixed: Not all cost parameter settings working properly
+Changed: Basegame conventional rail and monorail vehicles no longer disabled
+Added: Liveries for the Linimo
+Changed: Standard Linimo livery tweaked.
+
+1.4.3 - 03/05/2019
+------------------------------------------------------------------------
+Fix: Fixed 4x running cost for high speed trains
+
+1.4.2 - 16/08/2018
+------------------------------------------------------------------------
+Feature: Added the ability to disable goods carriages.
+
+1.4.1 - 23/07/2018
+------------------------------------------------------------------------
+Changed: Tweaked the alignments.
+Changed: Fixed headlights of M-Bahn being on in either direction.
+
+1.4 - 19/07/2018
+------------------------------------------------------------------------
+Changed: Switched the order of the Passenger and Mail cars of the SC-Maglev.
+Changed: SC-Maglev trains now have a lower mass.
+Renamed: Renamed MLX wagons to SC-Maglev wagons.
+Changed: SC-Maglev wagons can be used to add wagons to the MLX and the L0 Shinkansen.
+Disabled: L0 Shinkansen wagons (does not break old saves.)
+
+1.3 - 10/07/2018
+------------------------------------------------------------------------
+Feature: Parameter to switch between real-colours and company colours.
+Feature: Parameter to allow the player to attach wagons to the Linimo and the Chinese low speed maglevs.
+
+1.2 - 09/06/2018
+------------------------------------------------------------------------
+Changed: Transrapid 8 is now available when China is enabled.
+Changed: Trains now align properly with the tracks
+Changed: Purchase window graphics now line up properly with 2cc in NML's.
+Changed: Trains now look better in depots.
+Changed: Chinese urban maglevs will now run on the same tracks as the Japanese and Korean urban maglevs.
+
+1.1 - 02/02/2018
+------------------------------------------------------------------------
+Fixed: Trains no longer make steam train sounds
+Changed: Trains can now be attached to each other indefinitely
+Other: Some other stuff I don't remember
+
+1.0 - 24/12/2017
+------------------------------------------------------------------------
+Initial release

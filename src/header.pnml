@@ -1,0 +1,188 @@
+#define JAPANLS param_japan_lowspeed
+#define JAPANHS param_japan_highspeed
+#define GERMANYLS param_germany_lowspeed
+#define GERMANYHS param_germany_highspeed
+#define SK param_sk
+#define CHINA param_china
+#define UK param_uk
+
+#define NOREGION 0
+
+#define REGION(REGION1,REGION2) climates_available: (REGION1 || REGION2) ? ALL_CLIMATES : NO_CLIMATE
+#define REGIONCAR(REGION1,REGION2,CAR1) climates_available: ((REGION1 || REGION2) && !CAR1) ? ALL_CLIMATES : NO_CLIMATE
+#define REGIONCAR2(REGION1,REGION2,CAR1) climates_available: ((REGION1 || REGION2) && CAR1) ? ALL_CLIMATES : NO_CLIMATE
+
+grf {
+	grfid:	"EN\20\01";
+	name:	string(STR_GRF_NAME);
+	desc:	string(STR_GRF_DESC);
+	version:	12;
+	min_compatible_version: 1;
+	param {
+		LOADSPEEDPARAM {
+			type:    int;
+			name:    string(STR_LOAD);
+			desc:    string(STR_LOAD_DESC);
+			min_value: 0;
+			max_value: 2;
+			def_value: 1;
+			names: {
+				0: string(STR_LOAD_0);
+				1: string(STR_LOAD_1);
+				2: string(STR_LOAD_2);
+			};
+		}
+	}
+	param {
+		PARAM_CONST {
+			type:    int;
+			name:    string(STR_CC);
+			desc:    string(STR_CC_DESC);
+			min_value: 0;
+			max_value: 4;
+			def_value: 2;
+			names: {
+				0: string(STR_CC_0);
+				1: string(STR_CC_1A);
+				2: string(STR_CC_2A);
+				3: string(STR_CC_3);
+				4: string(STR_CC_4);
+			};
+		}
+	}
+	param {
+		PARAM_RUN {
+			type:    int;
+			name:    string(STR_RC);
+			desc:    string(STR_RC_DESC);
+			min_value: 0;
+			max_value: 4;
+			def_value: 2;
+			names: {
+				0: string(STR_CC_0);
+				1: string(STR_CC_1);
+				2: string(STR_CC_2);
+				3: string(STR_CC_3);
+				4: string(STR_CC_4A);
+			};
+		}
+	}
+	param {
+		PARAM_CONST_HS {
+			type:    int;
+			name:    string(STR_DEPRECATED);
+			desc:    string(STR_DEPRECATED_DESC);
+			min_value: 0;
+			max_value: 0;
+			def_value: 0;
+			names: {
+				0: string(STR_DEPRECATED);
+			};
+		}
+	}
+	param {
+		PARAM_RUN_HS {
+			type:    int;
+			name:    string(STR_RC_HS);
+			desc:    string(STR_RC_HS_DESC);
+			min_value: 0;
+			max_value: 4;
+			def_value: 2;
+			names: {
+				0: string(STR_CC_0);
+				1: string(STR_CC_1);
+				2: string(STR_CC_2);
+				3: string(STR_CC_3);
+				4: string(STR_CC_4A);
+			};
+		}
+	}
+	param {
+		JAPANLS {
+			type:	bool;
+			name:	string(STR_PARAM_JAPANLS);
+			desc:	string(STR_PARAM_JAPANLS_DESC);
+			def_value: 1;
+		}
+	}
+	param {
+		JAPANHS {
+			type:	bool;
+			name:	string(STR_PARAM_JAPANHS);
+			desc:	string(STR_PARAM_JAPANHS_DESC);
+			def_value: 1;
+		}
+	}
+	param {
+		GERMANYLS {
+			type:	bool;
+			name:	string(STR_PARAM_GERMANYLS);
+			desc:	string(STR_PARAM_GERMANYLS_DESC);
+			def_value: 1;
+		}
+	}
+	param {
+		GERMANYHS {
+			type:	bool;
+			name:	string(STR_PARAM_GERMANYHS);
+			desc:	string(STR_PARAM_GERMANYHS_DESC);
+			def_value: 1;
+		}
+	}
+	param {
+		SK {
+			type:	bool;
+			name:	string(STR_PARAM_SK);
+			desc:	string(STR_PARAM_SK_DESC);
+			def_value: 1;
+		}
+	}
+	param {
+		CHINA {
+			type:	bool;
+			name:	string(STR_PARAM_CHINA);
+			desc:	string(STR_PARAM_CHINA_DESC);
+			def_value: 1;
+		}
+	}
+	param {
+		UK {
+			type:	bool;
+			name:	string(STR_PARAM_UK);
+			desc:	string(STR_PARAM_UK_DESC);
+			def_value: 1;
+		}
+	}
+	param {
+		PURCHASE {
+			type:	bool;
+			name:	string(STR_PARAM_PURCHASE);
+			desc:	string(STR_PARAM_PURCHASE_DESC);
+			def_value: 0;
+		}
+	}
+	param {
+		PARAM2CC {
+			type:	bool;
+			name:	string(STR_PARAM_2CC);
+			desc:	string(STR_PARAM_2CC_DESC);
+			def_value: 0;
+		}
+	}
+	param {
+		LSCAR {
+			type:	bool;
+			name:	string(STR_PARAM_LSCAR);
+			desc:	string(STR_PARAM_LSCAR_DESC);
+			def_value: 0;
+		}
+	}
+	param {
+		CARGO {
+			type:	bool;
+			name:	string(STR_PARAM_CARGO);
+			desc:	string(STR_PARAM_CARGO_DESC);
+			def_value: 1;
+		}
+	}
+}

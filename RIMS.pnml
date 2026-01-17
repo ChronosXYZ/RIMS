@@ -1,0 +1,60 @@
+// Define GRF
+#include "src/header.pnml"
+
+//Useable cargo
+cargotable {
+	PASS, TOUR, MAIL, GOOD
+}
+
+//disable original maglev vehicles
+disable_item(FEAT_TRAINS, 84, 115);
+
+//set base cost multiplier for this set
+basecost {
+	PR_BUILD_VEHICLE_TRAIN:    0 + PARAM_CONST - 2;
+	PR_BUILD_VEHICLE_WAGON:    2 + PARAM_CONST - 2;
+	PR_RUNNING_TRAIN_DIESEL:   2 + PARAM_RUN_HS- 2; //Pretty cheaty: this is High speed maglev
+	PR_RUNNING_TRAIN_ELECTRIC: 2 + PARAM_RUN   - 2;
+}
+
+train_width_32_px = 1;
+
+#include "src/template.pnml"
+#include "src/wagon_attach.pnml"
+#include "src/loadspeed.pnml"
+#include "src/railtypetable.pnml"
+
+//Imports trains
+#include "src/MAGLEV/ECOBEE.pnml"
+#include "src/MAGLEV/LINIMO.pnml"
+#include "src/MAGLEV/ROTEM.pnml"
+#include "src/MAGLEV/HSST100L.pnml"
+#include "src/MAGLEV/HSST100S.pnml"
+#include "src/MAGLEV/BIRMINGHAM.pnml"
+#include "src/MAGLEV/M802.pnml"
+#include "src/MAGLEV/L0_PASS.pnml"
+#include "src/MAGLEV/L0_MAIL.pnml"
+#include "src/MAGLEV/L0SHINKANSEN.pnml"
+#include "src/MAGLEV/MLX_PASS.pnml"
+#include "src/MAGLEV/MLX_MAIL.pnml"
+#include "src/MAGLEV/MLX01901.pnml"
+#include "src/MAGLEV/MLX011.pnml"
+#include "src/MAGLEV/WINDCHASER.pnml"
+#include "src/MAGLEV/ZHUIFENGZHE.pnml"
+#include "src/MAGLEV/LINGLONG.pnml"
+#include "src/MAGLEV/TRANSRAPID_PASS.pnml"
+#include "src/MAGLEV/TRANSRAPID_MAIL.pnml"
+#include "src/MAGLEV/TRANSRAPID_GOODS.pnml"
+#include "src/MAGLEV/TRANSRAPID09.pnml"
+#include "src/MAGLEV/TRANSRAPID08.pnml"
+#include "src/MAGLEV/TRANSRAPID07.pnml"
+#include "src/MAGLEV/LINIMOCAR.pnml"
+#include "src/MAGLEV/WINDCHASERCAR.pnml"
+#include "src/MAGLEV/ZHUIFENGZHECAR.pnml"
+#include "src/MAGLEV/LINGLONGCAR.pnml"
+
+#include "src/sorting.pnml"				//Sorts the maglevs
+
+
+//cd /mnt/c/Temp/RIMS
+//make -B

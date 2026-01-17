@@ -1,0 +1,203 @@
+//LINIMOCAR
+
+//Spritesets
+spriteset (SPRITESET_LINIMOCAR_BACK, "grf/LINIMO.png") {
+	TEMP_DOUBLE_8_BACK(48,1,0)
+}
+switch(FEAT_TRAINS, SELF, switch_GRF_LINIMOCAR, position_in_consist_from_end) {
+	0:      SPRITESET_LINIMOCAR_BACK;
+    SPRITESET_LINIMO;
+}
+spriteset (SPRITESET_LINIMOCAR_BACK_2, "grf/LINIMO.png") {
+	TEMP_DOUBLE_8_BACK(48+72*2,1,0)
+}
+switch(FEAT_TRAINS, SELF, switch_GRF_LINIMOCAR_2, position_in_consist_from_end) {
+	0:      SPRITESET_LINIMOCAR_BACK_2;
+    SPRITESET_LINIMO_2;
+}
+spriteset (SPRITESET_LINIMOCAR_BACK_3, "grf/LINIMO.png") {
+	TEMP_DOUBLE_8_BACK(48+72*3,1,0)
+}
+switch(FEAT_TRAINS, SELF, switch_GRF_LINIMOCAR_3, position_in_consist_from_end) {
+	0:      SPRITESET_LINIMOCAR_BACK_3;
+    SPRITESET_LINIMO_3;
+}
+spriteset (SPRITESET_LINIMOCAR_BACK_4, "grf/LINIMO.png") {
+	TEMP_DOUBLE_8_BACK(48+72*4,1,0)
+}
+switch(FEAT_TRAINS, SELF, switch_GRF_LINIMOCAR_4, position_in_consist_from_end) {
+	0:      SPRITESET_LINIMOCAR_BACK_4;
+    SPRITESET_LINIMO_4;
+}
+//2cc
+spriteset (SPRITESET_LINIMOCAR_BACK_CC, "grf/LINIMO.png") {
+	TEMP_DOUBLE_8_BACK(48+72,1,0)
+}
+switch(FEAT_TRAINS, SELF, switch_GRF_LINIMOCAR_CC, position_in_consist_from_end) {
+	0:      SPRITESET_LINIMOCAR_BACK_CC;
+    SPRITESET_LINIMO_CC;
+}
+
+//Livery Switch Sets
+switch(FEAT_TRAINS,SELF,switch_livery_LINIMOCAR,cargo_subtype){
+    0:	switch_GRF_LINIMOCAR;
+    1:	switch_GRF_LINIMOCAR_2;
+    2:	switch_GRF_LINIMOCAR_3;
+    3:	switch_GRF_LINIMOCAR_4;
+}
+switch(FEAT_TRAINS,SELF,switch_livery_LINIMOCAR_2CC,PARAM2CC){
+    0:	switch_livery_LINIMOCAR;
+    1:	switch_GRF_LINIMOCAR_CC;
+}
+//wagon
+switch(FEAT_TRAINS,SELF,switch_livery_LINIMO_PASS,cargo_subtype){
+    0:	SPRITESET_LINIMO_WAG;
+    1:	SPRITESET_LINIMO_WAG_2;
+    2:	SPRITESET_LINIMO_WAG_3;
+    3:	SPRITESET_LINIMO_WAG_4;
+}
+switch(FEAT_TRAINS,SELF,switch_LINIMO_PASS_CC,PARAM2CC){
+    1: return SPRITESET_LINIMO_WAG_CC;
+       return switch_livery_LINIMO_PASS;
+}
+
+
+//Purchase
+spriteset (SPRITESET_PURCH_LINIMOCAR, "grf/LINIMO.png") {
+	TEMP_PURCH_DUAL_MU(176,0,0,1)
+}
+spriteset (SPRITESET_PURCH_LINIMOCAR_COMP, "grf/LINIMO.png") {
+	TEMP_PURCH_DUAL_MU_COM(176,28,0,1)
+}
+spriteset (SPRITESET_PURCH_LINIMOCAR_CC, "grf/LINIMO.png") {
+	TEMP_PURCH_DUAL_MU(176,0+56,0,1)
+}
+spriteset (SPRITESET_PURCH_LINIMOCAR_COMP_CC, "grf/LINIMO.png") {
+	TEMP_PURCH_DUAL_MU_COM(176,28+56,0,1)
+}
+switch(FEAT_TRAINS,SELF,switch_LINIMOCAR_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_LINIMOCAR_COMP;
+       return SPRITESET_PURCH_LINIMOCAR;
+}
+switch(FEAT_TRAINS,SELF,switch_LINIMOCAR_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_LINIMOCAR_COMP_CC;
+       return SPRITESET_PURCH_LINIMOCAR_CC;
+}
+switch(FEAT_TRAINS,SELF,switch_LINIMOCAR_purch_CC,PARAM2CC){
+    1: return switch_LINIMOCAR_purchase_CC;
+       return switch_LINIMOCAR_purchase;
+}
+//WAGON PURCH
+spriteset (SPRITESET_PURCH_LINIMO_PASS, "grf/LINIMO.png") {
+	TEMP_PURCH_SINGLE_NEW(176,14,0,1)
+}
+spriteset (SPRITESET_PURCH_LINIMO_PASS_COMP, "grf/LINIMO.png") {
+	TEMP_PURCH_SINGLE_NEW_COM(176,28+14,0,1)
+}
+spriteset (SPRITESET_PURCH_LINIMO_PASS_CC, "grf/LINIMO.png") {
+	TEMP_PURCH_SINGLE_NEW(176,14+56,0,1)
+}
+spriteset (SPRITESET_PURCH_LINIMO_PASS_COMP_CC, "grf/LINIMO.png") {
+	TEMP_PURCH_SINGLE_NEW_COM(176,28+56+14,0,1)
+}
+switch(FEAT_TRAINS,SELF,switch_LINIMO_PASS_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_LINIMO_PASS_COMP;
+       return SPRITESET_PURCH_LINIMO_PASS;
+}
+switch(FEAT_TRAINS,SELF,switch_LINIMO_PASS_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_LINIMO_PASS_COMP_CC;
+       return SPRITESET_PURCH_LINIMO_PASS_CC;
+}
+switch(FEAT_TRAINS,SELF,switch_LINIMO_PASS_purch_CC,PARAM2CC){
+    1: return switch_LINIMO_PASS_purchase_CC;
+       return switch_LINIMO_PASS_purchase;
+}
+//WAGON
+item(FEAT_TRAINS, LINIMO_PASS, ITEM_LINIMO_PASS) {
+	property {
+		//Basic
+		model_life:	VEHICLE_NEVER_EXPIRES;
+		vehicle_life: 35;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_URBAN
+		running_cost_base: RUNNING_COST_ELECTRIC;
+		misc_flags: bitmask(TRAIN_FLAG_2CC);
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: INDUCTION_MGLV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		refit_cost: 0;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Trains
+		name: string(STR_NAME_LINIMO_PASS);
+		REGIONCAR2(JAPANLS, NOREGION, LSCAR);
+		introduction_date:	date(2005,01,01);
+		cost_factor: 30;
+		running_cost_factor: 5;
+		speed: 0 km/h;
+		power: 0 kW;
+		cargo_capacity: 84;
+		weight: 17.5 tons;
+		
+		length: 8;
+		dual_headed: 0;
+	}
+	graphics {
+		default: switch_LINIMO_PASS_CC; // Use this switch to set sprite
+		purchase: switch_LINIMO_PASS_purch_CC;
+		additional_text: return string(STR_DESC_LINIMO_PASS);
+		//cargo_subtype_text:	switch_livery_LINIMO_text_2CC;	
+	}
+}
+//HEADS
+item(FEAT_TRAINS, LINIMOCAR, ITEM_LINIMOCAR) {
+	property {
+		//Constants
+		model_life:	VEHICLE_NEVER_EXPIRES;
+		reliability_decay: 7;
+		vehicle_life: 35;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_URBAN
+		running_cost_base: RUNNING_COST_ELECTRIC;
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: INDUCTION_MGLV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		refit_cost: 0;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Variables
+		name:	string(STR_NAME_LINIMO);
+		REGIONCAR2(JAPANLS, NOREGION, LSCAR);
+		introduction_date:	date(2005,01,01);
+		cost_factor: 52;
+		running_cost_factor: 38;
+		speed: 100 km/h;
+		power: 360 kW;
+		cargo_capacity: 80;
+		weight: 17.5 tons;
+		air_drag_coefficient: 0.080;
+		
+		length: 8;
+		dual_headed: 1;
+		misc_flags: bitmask(TRAIN_FLAG_TILT, TRAIN_FLAG_MU, TRAIN_FLAG_2CC);
+	}
+	graphics {
+		default: switch_livery_LINIMOCAR_2CC; // Use this group
+		purchase: switch_LINIMOCAR_purch_CC; // Use this set for the menu
+		additional_text: return string(STR_DESC_LINIMOCAR);
+		can_attach_wagon: switch_can_attach_vehicle;
+		cargo_subtype_text:	switch_livery_LINIMO_text_2CC;	
+	}
+	livery_override (ITEM_LINIMO_PASS) {
+		power: 120;	
+		default: switch_LINIMO_PASS_CC;
+	}
+}

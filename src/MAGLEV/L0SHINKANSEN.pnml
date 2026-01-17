@@ -1,0 +1,138 @@
+//L0SHINKANSEN
+
+//Spritesets
+spriteset (SPRITESET_L0SHINKANSEN, "grf/L0SHINKANSEN.png") {
+	TEMP_TRAIN_DOUBLE_8(0,0,0)
+}
+spritegroup SPRITEGROUP_L0SHINKANSEN {
+	loading: SPRITESET_L0SHINKANSEN;
+	loaded:  SPRITESET_L0SHINKANSEN;
+}
+
+spriteset (SPRITESET_L0SHINKANSEN_BACK, "grf/L0SHINKANSEN.png") {
+	TEMP_DOUBLE_8_BACK(46,0,0)
+}
+spritegroup SPRITEGROUP_L0SHINKANSEN_BACK {
+	loading: SPRITESET_L0SHINKANSEN_BACK;
+	loaded:  SPRITESET_L0SHINKANSEN_BACK;
+}
+
+spriteset (SPRITESET_PURCH_L0SHINKANSEN, "grf/L0SHINKANSEN.png") {
+	TEMP_PURCH_DUAL_MU(176,0,0,1)
+}
+spriteset (SPRITESET_PURCH_L0SHINKANSEN_COMP, "grf/L0SHINKANSEN.png") {
+	TEMP_PURCH_DUAL_MU_COM(176,14*3,0,1)
+}
+
+switch(FEAT_TRAINS, SELF, switch_GRF_L0SHINKANSEN, position_in_consist_from_end) {
+    0:      SPRITEGROUP_L0SHINKANSEN_BACK;
+    SPRITEGROUP_L0SHINKANSEN;
+}
+
+//2cc
+spriteset (SPRITESET_L0SHINKANSEN_CC, "grf/L0SHINKANSEN.png") {
+	TEMP_TRAIN_DOUBLE_8(0+92,0,0)
+}
+spritegroup SPRITEGROUP_L0SHINKANSEN_CC {
+	loading: SPRITESET_L0SHINKANSEN_CC;
+	loaded:  SPRITESET_L0SHINKANSEN_CC;
+}
+
+spriteset (SPRITESET_L0SHINKANSEN_BACK_CC, "grf/L0SHINKANSEN.png") {
+	TEMP_DOUBLE_8_BACK(46+92,0,0)
+}
+spritegroup SPRITEGROUP_L0SHINKANSEN_BACK_CC {
+	loading: SPRITESET_L0SHINKANSEN_BACK_CC;
+	loaded:  SPRITESET_L0SHINKANSEN_BACK_CC;
+}
+
+spriteset (SPRITESET_PURCH_L0SHINKANSEN_CC, "grf/L0SHINKANSEN.png") {
+	TEMP_PURCH_DUAL_MU(176,0+84,0,1)
+}
+spriteset (SPRITESET_PURCH_L0SHINKANSEN_COMP_CC, "grf/L0SHINKANSEN.png") {
+	TEMP_PURCH_DUAL_MU_COM(176,14*3+84,0,1)
+}
+
+switch(FEAT_TRAINS, SELF, switch_GRF_L0SHINKANSEN_CC, position_in_consist_from_end) {
+    0:      SPRITEGROUP_L0SHINKANSEN_BACK_CC;
+    SPRITEGROUP_L0SHINKANSEN_CC;
+}
+
+switch(FEAT_TRAINS,SELF,switch_L0SHINKANSEN_CC,PARAM2CC){
+    1: return switch_GRF_L0SHINKANSEN_CC;
+       return switch_GRF_L0SHINKANSEN;
+}
+
+switch(FEAT_TRAINS,SELF,switch_L0SHINKANSEN_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_L0SHINKANSEN_COMP;
+       return SPRITESET_PURCH_L0SHINKANSEN;
+}
+switch(FEAT_TRAINS,SELF,switch_L0SHINKANSEN_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_L0SHINKANSEN_COMP_CC;
+       return SPRITESET_PURCH_L0SHINKANSEN_CC;
+}
+
+switch(FEAT_TRAINS,SELF,switch_L0SHINKANSEN_purch_CC,PARAM2CC){
+    1: return switch_L0SHINKANSEN_purchase_CC;
+       return switch_L0SHINKANSEN_purchase;
+}
+
+item(FEAT_TRAINS, L0SHINKANSEN, ITEM_L0SHINKANSEN) {
+	property {
+		//Constants
+		model_life:	VEHICLE_NEVER_EXPIRES;
+		retire_early: 10;
+		reliability_decay:	12;
+		vehicle_life: 60;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_HIGHSPEED
+		running_cost_base: RUNNING_COST_DIESEL;
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: EDS_MAGLEV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		refit_cost: 0;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Variables
+		name:	string(STR_NAME_L0SHINKANSEN);
+		REGION(JAPANHS, NOREGION);
+		introduction_date:	date(2013,01,01);
+		cost_factor: 124;
+		running_cost_factor:137;
+		speed: 603 km/h;
+		power: 2815 kW;
+		cargo_capacity: 24;
+		weight: 25 tons;
+		air_drag_coefficient: 0.013;
+		
+		length: 8;
+		dual_headed: 1;
+		misc_flags: bitmask(TRAIN_FLAG_TILT, TRAIN_FLAG_MU, TRAIN_FLAG_2CC);
+	}
+	graphics {
+		default: switch_L0SHINKANSEN_CC; // Use this group
+		purchase: switch_L0SHINKANSEN_purch_CC; // Use this set for the menu
+		additional_text: return string(STR_DESC_L0SHINKANSEN);
+		can_attach_wagon: switch_can_attach_vehicle;
+	}
+	livery_override (ITEM_L0_MAIL) {
+		power: 268;	
+		default: switch_L0_MAIL_CC;
+	}
+	livery_override (ITEM_L0_PASS) {
+		power: 268;	
+		default: switch_L0_PASS_CC;
+	}
+	livery_override (ITEM_MLX_MAIL) {
+		power: 268;	
+		default: switch_L0_MAIL_CC;
+	}
+	livery_override (ITEM_MLX_PASS) {
+		power: 268;	
+		default: switch_L0_PASS_CC;
+	}
+}

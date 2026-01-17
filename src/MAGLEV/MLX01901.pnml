@@ -1,0 +1,138 @@
+//MLX01901
+
+//Spritesets
+spriteset (SPRITESET_MLX01901, "grf/MLX01901.png") {
+	TEMP_TRAIN_DOUBLE_8(0,0,0)
+}
+spritegroup SPRITEGROUP_MLX01901 {
+	loading: SPRITESET_MLX01901;
+	loaded:  SPRITESET_MLX01901;
+}
+
+spriteset (SPRITESET_MLX01901_BACK, "grf/MLX01901.png") {
+	TEMP_DOUBLE_8_BACK(46,0,0)
+}
+spritegroup SPRITEGROUP_MLX01901_BACK {
+	loading: SPRITESET_MLX01901_BACK;
+	loaded:  SPRITESET_MLX01901_BACK;
+}
+
+spriteset (SPRITESET_PURCH_MLX01901, "grf/MLX01901.png") {
+	TEMP_PURCH_DUAL_MU(176,0,0,1)
+}
+spriteset (SPRITESET_PURCH_MLX01901_COMP, "grf/MLX01901.png") {
+	TEMP_PURCH_DUAL_MU_COM(176,14*3,0,1)
+}
+
+switch(FEAT_TRAINS, SELF, switch_GRF_MLX01901, position_in_consist_from_end) {
+    0:      SPRITEGROUP_MLX01901_BACK;
+    SPRITEGROUP_MLX01901;
+}
+
+switch(FEAT_TRAINS,SELF,switch_MLX01901_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_MLX01901_COMP;
+       return SPRITESET_PURCH_MLX01901;
+}
+
+//Spritesets
+spriteset (SPRITESET_MLX01901_CC, "grf/MLX01901.png") {
+	TEMP_TRAIN_DOUBLE_8(92,0,0)
+}
+spritegroup SPRITEGROUP_MLX01901_CC {
+	loading: SPRITESET_MLX01901_CC;
+	loaded:  SPRITESET_MLX01901_CC;
+}
+
+spriteset (SPRITESET_MLX01901_BACK_CC, "grf/MLX01901.png") {
+	TEMP_DOUBLE_8_BACK(46+92,0,0)
+}
+spritegroup SPRITEGROUP_MLX01901_BACK_CC {
+	loading: SPRITESET_MLX01901_BACK_CC;
+	loaded:  SPRITESET_MLX01901_BACK_CC;
+}
+
+spriteset (SPRITESET_PURCH_MLX01901_CC, "grf/MLX01901.png") {
+	TEMP_PURCH_DUAL_MU(176,84,0,1)
+}
+spriteset (SPRITESET_PURCH_MLX01901_COMP_CC, "grf/MLX01901.png") {
+	TEMP_PURCH_DUAL_MU_COM(176,14*3+84,0,1)
+}
+
+switch(FEAT_TRAINS, SELF, switch_GRF_MLX01901_CC, position_in_consist_from_end) {
+    0:      SPRITEGROUP_MLX01901_BACK_CC;
+    SPRITEGROUP_MLX01901_CC;
+}
+
+switch(FEAT_TRAINS,SELF,switch_MLX01901_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_MLX01901_COMP_CC;
+       return SPRITESET_PURCH_MLX01901_CC;
+}
+
+switch(FEAT_TRAINS,SELF,switch_MLX01901_purch_CC,PARAM2CC){
+    1: return switch_MLX01901_purchase_CC;
+       return switch_MLX01901_purchase;
+}
+
+switch(FEAT_TRAINS,SELF,switch_MLX01901_CC,PARAM2CC){
+    1: return switch_GRF_MLX01901_CC;
+       return switch_GRF_MLX01901;
+}
+
+item(FEAT_TRAINS, MLX01901, ITEM_MLX01901) {
+	property {
+		//Constants
+		model_life:	25;
+		reliability_decay: 7;
+		vehicle_life: 45;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_HIGHSPEED
+		running_cost_base: RUNNING_COST_DIESEL;
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: EDS_MAGLEV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		refit_cost: 0;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Variables
+		name:	string(STR_NAME_MLX01901);
+		REGION(JAPANHS, NOREGION);
+		introduction_date:	date(2002,01,01);
+		cost_factor: 120;
+		running_cost_factor:132;
+		speed: 581 km/h;
+		power: 2642 kW;
+		cargo_capacity: 24;
+		weight: 25.5 tons;
+		air_drag_coefficient: 0.014;
+		
+		length: 8;
+		dual_headed: 1;
+		misc_flags: bitmask(TRAIN_FLAG_TILT, TRAIN_FLAG_MU);
+	}
+	graphics {
+		default: switch_MLX01901_CC; // Use this group
+		purchase: switch_MLX01901_purch_CC; // Use this set for the menu
+		additional_text: return string(STR_DESC_MLX01901);
+		can_attach_wagon: switch_can_attach_vehicle;
+	}
+	livery_override (ITEM_MLX_MAIL) {
+		power: 440;	
+		default: switch_MLX_MAIL_CC;
+	}
+	livery_override (ITEM_MLX_PASS) {
+		power: 440;	
+		default: switch_MLX_PASS_CC;
+	}
+	livery_override (ITEM_L0_MAIL) {
+		power: 440;	
+		default: switch_MLX_MAIL_CC;
+	}
+	livery_override (ITEM_L0_PASS) {
+		power: 440;	
+		default: switch_MLX_PASS_CC;
+	}
+}

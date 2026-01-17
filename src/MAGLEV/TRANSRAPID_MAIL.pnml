@@ -1,0 +1,88 @@
+//Spritesets
+spriteset (SPRITESET_TRANSRAPID_MAIL, "grf/TRANSRAPID08.png") {
+	TEMP_CAR_8_NEW(72,0,0)
+}
+spritegroup SPRITEGROUP_TRANSRAPID_MAIL {
+	loading: SPRITESET_TRANSRAPID_MAIL;
+	loaded:  SPRITESET_TRANSRAPID_MAIL;
+}
+
+spriteset (SPRITESET_PURCH_TRANSRAPID_MAIL, "grf/TRANSRAPID08.png") {
+	TEMP_PURCH_SINGLE_NEW(176,28,0,1)
+}
+spriteset (SPRITESET_PURCH_TRANSRAPID_MAIL_COMP, "grf/TRANSRAPID08.png") {
+	TEMP_PURCH_SINGLE_NEW_COM(176,28+14*4,0,1)
+}
+
+//2cc
+spriteset (SPRITESET_TRANSRAPID_MAIL_CC, "grf/TRANSRAPID08.png") {
+	TEMP_CAR_8_NEW(72+240,0,0)
+}
+spritegroup SPRITEGROUP_TRANSRAPID_MAIL_CC {
+	loading: SPRITESET_TRANSRAPID_MAIL_CC;
+	loaded:  SPRITESET_TRANSRAPID_MAIL_CC;
+}
+
+spriteset (SPRITESET_PURCH_TRANSRAPID_MAIL_CC, "grf/TRANSRAPID08.png") {
+	TEMP_PURCH_SINGLE_NEW(176,28+112,0,1)
+}
+spriteset (SPRITESET_PURCH_TRANSRAPID_MAIL_COMP_CC, "grf/TRANSRAPID08.png") {
+	TEMP_PURCH_SINGLE_NEW_COM(176,28+14*4+112,0,1)
+}
+
+switch(FEAT_TRAINS,SELF,switch_TRANSRAPID_MAIL_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_TRANSRAPID_MAIL_COMP;
+       return SPRITESET_PURCH_TRANSRAPID_MAIL;
+}
+switch(FEAT_TRAINS,SELF,switch_TRANSRAPID_MAIL_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_TRANSRAPID_MAIL_COMP_CC;
+       return SPRITESET_PURCH_TRANSRAPID_MAIL_CC;
+}
+switch(FEAT_TRAINS,SELF,switch_TRANSRAPID_MAIL_purch_CC,PARAM2CC){
+    1: return switch_TRANSRAPID_MAIL_purchase_CC;
+       return switch_TRANSRAPID_MAIL_purchase;
+}
+switch(FEAT_TRAINS,SELF,switch_TRANSRAPID_MAIL_CC,PARAM2CC){
+    1: return SPRITEGROUP_TRANSRAPID_MAIL_CC;
+       return SPRITEGROUP_TRANSRAPID_MAIL;
+}
+
+		//Passenger Car
+item(FEAT_TRAINS, TRANSRAPID_MAIL, ITEM_TRANSRAPID_MAIL) {
+	property {
+		//Basic
+		model_life:	VEHICLE_NEVER_EXPIRES;
+		vehicle_life: 45;
+		refittable_cargo_classes: bitmask(CC_MAIL);
+		cargo_allow_refit: [MAIL];
+		LOADINGSPEED_HIGHSPEED
+		running_cost_base: RUNNING_COST_DIESEL;
+		misc_flags: bitmask(TRAIN_FLAG_2CC);
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: THREEPHASEHS_MGLV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		refit_cost: 0;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Trains
+		name: string(STR_NAME_TRANSRAPID_MAIL);
+		REGION(GERMANYHS, CHINA);
+		introduction_date:	date(1988,01,01);
+		cost_factor: 102;
+		running_cost_factor:15;
+		power: 0 kW;
+		cargo_capacity: 100;
+		weight: 27 tons;
+		
+		length: 8;
+		dual_headed: 0;
+	}
+	graphics {
+		default: switch_TRANSRAPID_MAIL_CC; // Use this switch to set sprite
+		purchase: switch_TRANSRAPID_MAIL_purch_CC;
+		additional_text: return string(STR_DESC_TRANSRAPID_MAIL);
+	}
+}

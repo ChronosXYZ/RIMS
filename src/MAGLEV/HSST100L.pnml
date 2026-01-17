@@ -1,0 +1,127 @@
+//HSST100L
+
+//Spritesets
+spriteset (SPRITESET_HSST100L, "grf/HSST100L.png") {
+	TEMP_TRAIN_DOUBLE_8(0,0,1)
+}
+spritegroup SPRITEGROUP_HSST100L {
+	loading: SPRITESET_HSST100L;
+	loaded:  SPRITESET_HSST100L;
+}
+
+spriteset (SPRITESET_HSST100L_BACK, "grf/HSST100L.png") {
+	TEMP_TRAIN_DOUBLE_8(24,0,1)
+}
+spritegroup SPRITEGROUP_HSST100L_BACK {
+	loading: SPRITESET_HSST100L_BACK;
+	loaded:  SPRITESET_HSST100L_BACK;
+}
+
+spriteset (SPRITESET_PURCH_HSST100L, "grf/HSST100L.png") {
+	TEMP_PURCH_DUAL_NEW(176,0,0,1)
+}
+spriteset (SPRITESET_PURCH_HSST100L_COMP, "grf/HSST100L.png") {
+	TEMP_PURCH_DUAL_NEW_COM(176,14,0,1)
+}
+
+switch(FEAT_TRAINS, SELF, switch_HSST100L_GRF, position_in_articulated_veh) {
+    1:      SPRITEGROUP_HSST100L_BACK;
+    SPRITEGROUP_HSST100L;
+}
+
+switch (FEAT_TRAINS, SELF, switch_articulated_HSST100L, extra_callback_info1) {
+    1: return ITEM_HSST100L; //use same vehicle for all parts
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; //stop adding vehicle parts
+}
+
+switch(FEAT_TRAINS,SELF,switch_HSST100L_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_HSST100L_COMP;
+       return SPRITESET_PURCH_HSST100L;
+}
+//2CC
+spriteset (SPRITESET_HSST100L_CC, "grf/HSST100L.png") {
+	TEMP_TRAIN_DOUBLE_8(24*2,0,1)
+}
+spritegroup SPRITEGROUP_HSST100L_CC {
+	loading: SPRITESET_HSST100L_CC;
+	loaded:  SPRITESET_HSST100L_CC;
+}
+
+spriteset (SPRITESET_HSST100L_BACK_CC, "grf/HSST100L.png") {
+	TEMP_TRAIN_DOUBLE_8(24*3,0,1)
+}
+spritegroup SPRITEGROUP_HSST100L_BACK_CC {
+	loading: SPRITESET_HSST100L_BACK_CC;
+	loaded:  SPRITESET_HSST100L_BACK_CC;
+}
+
+spriteset (SPRITESET_PURCH_HSST100L_CC, "grf/HSST100L.png") {
+	TEMP_PURCH_DUAL_NEW(176,14*2,0,1)
+}
+spriteset (SPRITESET_PURCH_HSST100L_COMP_CC, "grf/HSST100L.png") {
+	TEMP_PURCH_DUAL_NEW_COM(176,14*3,0,1)
+}
+
+switch(FEAT_TRAINS, SELF, switch_HSST100L_GRF_CC, position_in_articulated_veh) {
+    1:      SPRITEGROUP_HSST100L_BACK_CC;
+    SPRITEGROUP_HSST100L_CC;
+}
+
+switch(FEAT_TRAINS,SELF,switch_HSST100L_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_HSST100L_COMP_CC;
+       return SPRITESET_PURCH_HSST100L_CC;
+}
+//2CC switch
+switch(FEAT_TRAINS, SELF, switch_HSST100L_CC, PARAM2CC) {
+    1:      switch_HSST100L_GRF_CC;
+    switch_HSST100L_GRF;
+}
+
+switch(FEAT_TRAINS,SELF,switch_HSST100L_purch_CC,PARAM2CC){
+    0: return switch_HSST100L_purchase;
+    1: return switch_HSST100L_purchase_CC;
+}
+
+item(FEAT_TRAINS, HSST100L, ITEM_HSST100L) {
+	property {
+		//Constants
+		model_life:	25;
+		reliability_decay: 7;
+		vehicle_life: 25;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_URBAN
+		running_cost_base: RUNNING_COST_ELECTRIC;
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: INDUCTION_MGLV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		refit_cost: 0;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Variables
+		name:	string(STR_NAME_HSST100L);
+		REGION(JAPANLS, NOREGION);
+		introduction_date:	date(1995,01,01);
+		cost_factor: 37;
+		running_cost_factor: 30;
+		speed: 110 km/h;
+		power: 294 kW;
+		cargo_capacity: 110;
+		weight: 15 ton;
+		air_drag_coefficient: 0.08;
+		
+		length: 8;
+		dual_headed: 0;
+		misc_flags: bitmask(TRAIN_FLAG_TILT, TRAIN_FLAG_MU, TRAIN_FLAG_2CC);
+	}
+	graphics {
+		default: switch_HSST100L_CC; // Use this group
+		purchase: switch_HSST100L_purch_CC; // Use this set for the menu
+		can_attach_wagon: switch_can_attach_vehicle;
+		additional_text: return string(STR_DESC_HSST100L);	
+		articulated_part: switch_articulated_HSST100L;	
+	}
+}

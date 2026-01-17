@@ -1,0 +1,121 @@
+//BIRMINGHAM
+
+//Spritesets
+spriteset (SPRITESET_BIRMINGHAM_1, "grf/BIRMINGHAM.png") {
+	TEMP_DOUBLE_4_FRONT(0,0,1)
+}
+spritegroup SPRITEGROUP_BIRMINGHAM_1 {
+	loading: SPRITESET_BIRMINGHAM_1;
+	loaded:  SPRITESET_BIRMINGHAM_1;
+}
+
+spriteset (SPRITESET_BIRMINGHAM_2, "grf/BIRMINGHAM.png") {
+	TEMP_DOUBLE_4_FRONT(20,0,1)
+}
+spritegroup SPRITEGROUP_BIRMINGHAM_2 {
+	loading: SPRITESET_BIRMINGHAM_2;
+	loaded:  SPRITESET_BIRMINGHAM_2;
+}
+
+spriteset (SPRITESET_PURCH_BIRMINGHAM, "grf/BIRMINGHAM.png") {
+	TEMP_PURCH_DUAL_NEW(112,0,0,1)
+}
+spriteset (SPRITESET_PURCH_BIRMINGHAM_COMP, "grf/BIRMINGHAM.png") {
+	TEMP_PURCH_DUAL_NEW_COM(112,14,0,1)
+}
+
+//2CC
+spriteset (SPRITESET_BIRMINGHAM_CC, "grf/BIRMINGHAM.png") {
+	TEMP_DOUBLE_4_FRONT(40,0,1)
+}
+spritegroup SPRITEGROUP_BIRMINGHAM_CC {
+	loading: SPRITESET_BIRMINGHAM_CC;
+	loaded:  SPRITESET_BIRMINGHAM_CC;
+}
+
+spriteset (SPRITESET_PURCH_BIRMINGHAM_CC, "grf/BIRMINGHAM.png") {
+	TEMP_PURCH_DUAL_NEW(112,14*2,0,1)
+}
+spriteset (SPRITESET_PURCH_BIRMINGHAM_COMP_CC, "grf/BIRMINGHAM.png") {
+	TEMP_PURCH_DUAL_NEW_COM(112,14*3,0,1)
+}
+
+//Livery Switch Sets
+switch(FEAT_TRAINS,SELF,switch_livery_BIRMINGHAM,cargo_subtype){
+    0:	SPRITEGROUP_BIRMINGHAM_1;
+    1:	SPRITEGROUP_BIRMINGHAM_2;
+}
+//Livery Switch Text
+switch(FEAT_TRAINS,SELF,switch_livery_BIRMINGHAM_text,cargo_subtype){
+    0: return string(STR_LIVERY_BIRMINGHAM_1);
+    1: return string(STR_LIVERY_BIRMINGHAM_2);
+       return CB_RESULT_NO_TEXT;
+}
+// Purchase window graphics
+switch(FEAT_TRAINS,SELF,switch_BIRMINGHAM_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_BIRMINGHAM_COMP;
+       return SPRITESET_PURCH_BIRMINGHAM;
+}
+
+switch(FEAT_TRAINS,SELF,switch_BIRMINGHAM_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_BIRMINGHAM_COMP_CC;
+       return SPRITESET_PURCH_BIRMINGHAM_CC;
+}
+
+switch(FEAT_TRAINS,SELF,switch_BIRMINGHAM_CC,PARAM2CC){
+    1: return switch_BIRMINGHAM_purchase_CC;
+       return switch_BIRMINGHAM_purchase;
+}
+//2CC liveries
+switch(FEAT_TRAINS,SELF,switch_livery_BIRMINGHAM_2CC,PARAM2CC){
+    0:	switch_livery_BIRMINGHAM;
+    1:	SPRITEGROUP_BIRMINGHAM_CC;
+}
+switch(FEAT_TRAINS,SELF,switch_livery_BIRMINGHAM_text_2CC,PARAM2CC){
+    0:	switch_livery_BIRMINGHAM_text;
+    1:	CB_RESULT_NO_TEXT;
+}
+
+item(FEAT_TRAINS, BIRMINGHAM, ITEM_BIRMINGHAM) {
+	property {
+		//Constants
+		model_life:	25;
+		reliability_decay: 7;
+		vehicle_life: 25;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_URBAN
+		running_cost_base: RUNNING_COST_ELECTRIC;
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: INDUCTION_MGLV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		refit_cost: 0;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Variables
+		name:	string(STR_NAME_BIRMINGHAM);
+		REGION(UK, NOREGION);
+		introduction_date:	date(1984,01,01);
+		cost_factor: 17;
+		running_cost_factor: 15;
+		speed: 42 km/h;
+		power: 43 kW;
+		cargo_capacity: 40;
+		weight: 5 ton;
+		air_drag_coefficient: 0.19;
+		
+		length: 4;
+		dual_headed: 0;
+		misc_flags: bitmask(TRAIN_FLAG_TILT, TRAIN_FLAG_MU, TRAIN_FLAG_2CC);
+	}
+	graphics {
+		default: switch_livery_BIRMINGHAM_2CC; // Use this group
+		purchase: switch_BIRMINGHAM_CC; // Use this set for the menu
+		can_attach_wagon: switch_can_attach_vehicle;
+		additional_text: return string(STR_DESC_BIRMINGHAM);	
+		cargo_subtype_text:	switch_livery_BIRMINGHAM_text_2CC;
+	}
+}

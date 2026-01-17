@@ -1,0 +1,187 @@
+//ROTEM
+
+//Spritesets
+//Default Livery
+spriteset (SPRITESET_ROTEM, "grf/ROTEM.png") {
+	TEMP_DOUBLE_7_FRONT(0,0,1)
+}
+spritegroup SPRITEGROUP_ROTEM {
+	loading: SPRITESET_ROTEM;
+	loaded:  SPRITESET_ROTEM;
+}
+
+spriteset (SPRITESET_ROTEM_BACK, "grf/ROTEM.png") {
+	TEMP_DOUBLE_7_FRONT(22,0,1)
+}
+spritegroup SPRITEGROUP_ROTEM_BACK {
+	loading: SPRITESET_ROTEM_BACK;
+	loaded:  SPRITESET_ROTEM_BACK;
+}
+//Museum Livery
+spriteset (SPRITESET_ROTEM_1, "grf/ROTEM.png") {
+	TEMP_DOUBLE_7_FRONT(88,0,1)
+}
+spritegroup SPRITEGROUP_ROTEM_1 {
+	loading: SPRITESET_ROTEM_1;
+	loaded:  SPRITESET_ROTEM_1;
+}
+
+spriteset (SPRITESET_ROTEM_BACK_1, "grf/ROTEM.png") {
+	TEMP_DOUBLE_7_FRONT(110,0,1)
+}
+spritegroup SPRITEGROUP_ROTEM_BACK_1 {
+	loading: SPRITESET_ROTEM_BACK_1;
+	loaded:  SPRITESET_ROTEM_BACK_1;
+}
+//MAGLEV livery
+spriteset (SPRITESET_ROTEM_2, "grf/ROTEM.png") {
+	TEMP_DOUBLE_7_FRONT(44,0,1)
+}
+spritegroup SPRITEGROUP_ROTEM_2 {
+	loading: SPRITESET_ROTEM_2;
+	loaded:  SPRITESET_ROTEM_2;
+}
+
+spriteset (SPRITESET_ROTEM_BACK_2, "grf/ROTEM.png") {
+	TEMP_DOUBLE_7_FRONT(66,0,1)
+}
+spritegroup SPRITEGROUP_ROTEM_BACK_2 {
+	loading: SPRITESET_ROTEM_BACK_2;
+	loaded:  SPRITESET_ROTEM_BACK_2;
+}
+//Purchase
+spriteset (SPRITESET_PURCH_ROTEM, "grf/ROTEM.png") {
+	TEMP_PURCH_DUAL_NEW(160,0,0,1)
+}
+spriteset (SPRITESET_PURCH_ROTEM_COMP, "grf/ROTEM.png") {
+	TEMP_PURCH_DUAL_NEW_COM(160,14,0,1)
+}
+
+switch(FEAT_TRAINS, SELF, switch_ROTEM_GRF, position_in_articulated_veh) {
+    1:      SPRITEGROUP_ROTEM_BACK;
+    SPRITEGROUP_ROTEM;
+}
+
+switch(FEAT_TRAINS, SELF, switch_ROTEM_GRF_1, position_in_articulated_veh) {
+    1:      SPRITEGROUP_ROTEM_BACK_1;
+    SPRITEGROUP_ROTEM_1;
+}
+
+switch(FEAT_TRAINS, SELF, switch_ROTEM_GRF_2, position_in_articulated_veh) {
+    1:      SPRITEGROUP_ROTEM_BACK_2;
+    SPRITEGROUP_ROTEM_2;
+}
+
+//2CC
+spriteset (SPRITESET_ROTEM_CC, "grf/ROTEM.png") {
+	TEMP_DOUBLE_7_FRONT(0+132,0,1)
+}
+spritegroup SPRITEGROUP_ROTEM_CC {
+	loading: SPRITESET_ROTEM_CC;
+	loaded:  SPRITESET_ROTEM_CC;
+}
+
+spriteset (SPRITESET_ROTEM_BACK_CC, "grf/ROTEM.png") {
+	TEMP_DOUBLE_7_FRONT(22+132,0,1)
+}
+spritegroup SPRITEGROUP_ROTEM_BACK_CC {
+	loading: SPRITESET_ROTEM_BACK_CC;
+	loaded:  SPRITESET_ROTEM_BACK_CC;
+}
+spriteset (SPRITESET_PURCH_ROTEM_CC, "grf/ROTEM.png") {
+	TEMP_PURCH_DUAL_NEW(160,14*2,0,1)
+}
+spriteset (SPRITESET_PURCH_ROTEM_COMP_CC, "grf/ROTEM.png") {
+	TEMP_PURCH_DUAL_NEW_COM(160,14*3,0,1)
+}
+switch(FEAT_TRAINS, SELF, switch_ROTEM_GRF_CC, position_in_articulated_veh) {
+    1:      SPRITEGROUP_ROTEM_BACK_CC;
+    SPRITEGROUP_ROTEM_CC;
+}
+
+switch (FEAT_TRAINS, SELF, switch_articulated_ROTEM, extra_callback_info1) {
+    1: return ITEM_ROTEM; //use same vehicle for all parts
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; //stop adding vehicle parts
+}
+
+//Livery Switch Sets
+switch(FEAT_TRAINS,SELF,switch_livery_ROTEM,cargo_subtype){
+    0:	switch_ROTEM_GRF;
+    1:	switch_ROTEM_GRF_1;
+	2: 	switch_ROTEM_GRF_2;
+}
+//Livery Switch Text
+switch(FEAT_TRAINS,SELF,switch_livery_ROTEM_text,cargo_subtype){
+    0: return string(STR_LIVERY_ROTEM_1);
+    1: return string(STR_LIVERY_ROTEM_2);
+    2: return string(STR_LIVERY_ROTEM_3);
+       return CB_RESULT_NO_TEXT;
+}
+
+switch(FEAT_TRAINS,SELF,switch_ROTEM_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_ROTEM_COMP;
+       return SPRITESET_PURCH_ROTEM;
+}
+switch(FEAT_TRAINS,SELF,switch_ROTEM_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_ROTEM_COMP_CC;
+       return SPRITESET_PURCH_ROTEM_CC;
+}
+switch(FEAT_TRAINS,SELF,switch_ROTEM_purch_CC,PARAM2CC){
+    1: return switch_ROTEM_purchase_CC;
+       return switch_ROTEM_purchase;
+}
+
+//2CC liveries
+switch(FEAT_TRAINS,SELF,switch_livery_ROTEM_2CC,PARAM2CC){
+    0:	switch_livery_ROTEM;
+    1:	switch_ROTEM_GRF_CC;
+}
+switch(FEAT_TRAINS,SELF,switch_livery_ROTEM_text_2CC,PARAM2CC){
+    0:	switch_livery_ROTEM_text;
+    1:	CB_RESULT_NO_TEXT;
+}
+
+item(FEAT_TRAINS, ROTEM, ITEM_ROTEM) {
+	property {
+		//Constants
+		model_life:	VEHICLE_NEVER_EXPIRES;
+		reliability_decay: 7;
+		vehicle_life: 35;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_URBAN
+		running_cost_base: RUNNING_COST_ELECTRIC;
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: INDUCTION_MGLV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		refit_cost: 0;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Variables
+		name:	string(STR_NAME_ROTEM);
+		REGION(SK, NOREGION);
+		introduction_date:	date(2003,01,01);
+		cost_factor: 45;
+		running_cost_factor: 32;
+		speed: 110 km/h;
+		power: 449 kW;
+		cargo_capacity: 100;
+		weight: 22 ton;
+		air_drag_coefficient: 0.07;
+		
+		length: 7;
+		dual_headed: 0;
+		misc_flags: bitmask(TRAIN_FLAG_TILT, TRAIN_FLAG_MU, TRAIN_FLAG_2CC);
+	}
+	graphics {
+		default: switch_livery_ROTEM_2CC; // Use this group
+		purchase: switch_ROTEM_purch_CC; // Use this set for the menu
+		can_attach_wagon: switch_can_attach_vehicle;
+		additional_text: return string(STR_DESC_ROTEM);	
+		articulated_part: switch_articulated_ROTEM;	
+		cargo_subtype_text:	switch_livery_ROTEM_text_2CC;	
+	}
+}

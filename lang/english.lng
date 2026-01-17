@@ -1,0 +1,161 @@
+##grflangid 0x01
+# 0x01 -> English
+
+# General GRF strings
+STR_GRF_NAME	:{TITLE}
+STR_GRF_DESC	:Real International Maglev Set. Contains real maglev trains from around the world. Spiritual sucessor of MMT, Modern Maglev Trains. {}{COPYRIGHT}2017-2019 Erato Nysiad{}License:CC BY-NC 4.0
+
+# Vehicle strings
+# Korean
+STR_NAME_ECOBEE			:Ecobee
+STR_DESC_ECOBEE			:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {GREEN}Incheon International Airport{}{GOLD}NOTES: {BLACK}Can only be attached to other Korean Maglev trains.
+STR_NAME_ROTEM			:Hyundai Rotem
+STR_DESC_ROTEM			:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {BLUE}National Science Museum{}{GOLD}NOTES: {BLACK}Can only be attached to other Korean Maglev trains.
+STR_LIVERY_ROTEM_1		:(Daejeon Expo Science Park)
+STR_LIVERY_ROTEM_3		:(MAGLEV)
+STR_LIVERY_ROTEM_2		:(Daejeon National Science Museum)
+
+#Japanese Low Speed
+STR_NAME_LINIMO			:Linimo
+STR_DESC_LINIMO			:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {BLUE}Aichi Rapid Transit{}{GOLD}NOTES: {BLACK}Can only be attached to other Linimo vehicles.
+STR_DESC_LINIMOCAR		:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {BLUE}Aichi Rapid Transit
+STR_NAME_HSST100L		:HSST-100L
+STR_DESC_HSST100L		:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {WHITE}Chubu HSST{}{GOLD}NOTES: {BLACK}Can only be attached to other HSST vehicles.
+STR_NAME_HSST100S		:HSST-100S
+STR_DESC_HSST100S		:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {WHITE}Chubu HSST{}{GOLD}NOTES: {BLACK}Can only be attached to other HSST vehicles.
+
+STR_NAME_LINIMO_PASS	:Linimo - Passenger Coach
+STR_DESC_LINIMO_PASS	:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {BLUE}Aichi Rapid Transit{}{GOLD}NOTES: {BLACK}Can only be attached to Linimo vehicles.
+
+STR_LIVERY_LINIMO_1		:(Default)
+STR_LIVERY_LINIMO_2		:(Expo)
+STR_LIVERY_LINIMO_3		:(Coca-Cola)
+STR_LIVERY_LINIMO_4		:(Floral Pattern)
+
+#One offs
+STR_NAME_BIRMINGHAM		:Birmingham Maglev
+STR_DESC_BIRMINGHAM		:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {BLUE}Birmingham International Airport{}{GOLD}NOTES: {BLACK}Can only be attached to other British Maglev trains.
+STR_LIVERY_BIRMINGHAM_1	:(Birmingham)
+STR_LIVERY_BIRMINGHAM_2	:(York)
+
+STR_NAME_M802			:M80/2
+STR_DESC_M802			:{BLACK}Railtype: {GOLD}M-Bahn{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {ORANGE}Magnetbahn GmbH{}{GOLD}NOTES: {BLACK}Can only be attached to other M-Bahn vehicles.
+
+#SC Maglev
+STR_NAME_L0SHINKANSEN	:L0 Series Shinkansen
+STR_DESC_L0SHINKANSEN	:{BLACK}Railtype: {GOLD}SC Maglev{}{BLACK}Usage: {BLUE}Express passengers{BLACK}{}{BLACK}Operators: {GOLD}JR CENTRAL {PURPLE}RTRI
+
+STR_NAME_L0_PASS		:L0 - Passenger Coach
+STR_NAME_L0_MAIL		:L0 - Mail Carriage
+STR_DESC_L0_PASS		:{BLACK}Railtype: {GOLD}SC Maglev{}{BLACK}Usage: {BLUE}Express passengers{BLACK}{}{BLACK}Operators: {GOLD}JR CENTRAL {PURPLE}RTRI{}{GOLD}NOTES: {BLACK}Can only be attached to the L0 Shinkansen.
+STR_DESC_L0_MAIL		:{BLACK}Railtype: {GOLD}SC Maglev{}{BLACK}Usage: {BLUE}Express mail{BLACK}{}{BLACK}Operators: {GOLD}JR CENTRAL {PURPLE}RTRI{}{GOLD}NOTES: {BLACK}Can only be attached to the L0 Shinkansen.
+
+STR_NAME_MLX011			:MLX01-1
+STR_DESC_MLX011			:{BLACK}Railtype: {GOLD}SC Maglev{}{BLACK}Usage: {BLUE}Express passengers{BLACK}{}{BLACK}Operators: {PURPLE}RTRI
+STR_NAME_MLX01901		:MLX01-901
+STR_DESC_MLX01901		:{BLACK}Railtype: {GOLD}SC Maglev{}{BLACK}Usage: {BLUE}Express passengers{BLACK}{}{BLACK}Operators: {PURPLE}RTRI
+
+STR_NAME_MLX_PASS		:SC-Maglev - Passenger Coach
+STR_NAME_MLX_MAIL		:SC-Maglev - Mail Carriage
+STR_DESC_MLX_PASS		:{BLACK}Railtype: {GOLD}SC Maglev{}{BLACK}Usage: {BLUE}Express passengers{BLACK}{}{BLACK}Operators: {GOLD}JR CENTRAL {PURPLE}RTRI{}{GOLD}NOTES: {BLACK}Can only be attached to MLX vehicles & the L0 Shinkansen.
+STR_DESC_MLX_MAIL		:{BLACK}Railtype: {GOLD}SC Maglev{}{BLACK}Usage: {BLUE}Express mail{BLACK}{}{BLACK}Operators: {GOLD}JR CENTRAL {PURPLE}RTRI{}{GOLD}NOTES: {BLACK}Can only be attached to MLX vehicles & the L0 Shinkansen.
+
+#Chinese
+STR_NAME_WINDCHASER		:Windchaser
+STR_DESC_WINDCHASER		:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {RED}Hunan Maglev Transportation{}{GOLD}NOTES: {BLACK}Can only be attached to other Chinese maglev vehicles.
+STR_DESC_WINDCHASERCAR	:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {RED}Hunan Maglev Transportation{}
+STR_NAME_ZHUIFENGZHE	:Zhuifengzhe
+STR_DESC_ZHUIFENGZHE	:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {RED}Hunan Maglev Transportation{}{GOLD}NOTES: {BLACK}Can only be attached to other Chinese maglev vehicles.
+STR_DESC_ZHUIFENGZHECAR	:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {RED}Hunan Maglev Transportation{}
+STR_NAME_LINGLONG		:Linglong
+STR_DESC_LINGLONG		:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {BLUE}Beijing Mass Transit Railway {}{GOLD}NOTES: {BLACK}Can only be attached to other Chinese maglev vehicles.
+STR_DESC_LINGLONGCAR	:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {BLUE}Beijing Mass Transit Railway {}
+
+STR_NAME_CHINA_PASS		:Chinese Urban Maglev - Passenger Coach
+STR_DESC_CHINA_PASS		:{BLACK}Railtype: {GOLD}Urban Maglev{}{BLACK}Usage: {GREEN}Commuter train{BLACK} - {GOLD}Faster loading{}{BLACK}Operators: {RED}Hunan Maglev Transportation {BLUE}Beijing Mass Transit Railway {}{GOLD}NOTES: {BLACK}Can only be attached to Linimo vehicles.
+
+STR_LIVERY_ZHUIFENGZHE_1	:(Red)
+STR_LIVERY_ZHUIFENGZHE_2	:(Blue)
+
+#Transrapid
+
+STR_NAME_TRANSRAPID07	:Transrapid 07
+STR_DESC_TRANSRAPID07	:{BLACK}Railtype: {GOLD}Transrapid{}{BLACK}Usage: {BLUE}Express passengers{BLACK}{}{BLACK}Operators: {GREEN}Transrapid International
+STR_NAME_TRANSRAPID08	:Transrapid 08
+STR_DESC_TRANSRAPID08	:{BLACK}Railtype: {GOLD}Transrapid{}{BLACK}Usage: {BLUE}Express passengers{BLACK}{}{BLACK}Operators: {GREEN}Transrapid International {BLUE}Shanghai Maglev Transportation Development
+STR_NAME_TRANSRAPID09	:Transrapid 09
+STR_DESC_TRANSRAPID09	:{BLACK}Railtype: {GOLD}Transrapid{}{BLACK}Usage: {BLUE}Express passengers{BLACK}{}{BLACK}Operators: {GREEN}Transrapid International
+
+STR_NAME_TRANSRAPID_PASS		:Transrapid - Passenger Coach
+STR_NAME_TRANSRAPID_MAIL		:Transrapid - Mail Carriage
+STR_NAME_TRANSRAPID_GOODS		:Transrapid - Goods Carriage
+STR_DESC_TRANSRAPID_PASS		:{BLACK}Railtype: {GOLD}Transrapid{}{BLACK}Usage: {BLUE}Express passengers{BLACK}{}{BLACK}Operators: {GREEN}Transrapid International {BLUE}Shanghai Maglev Transportation Development{}{GOLD}NOTES: {BLACK}Can only be attached to Transrapid vehicles.
+STR_DESC_TRANSRAPID_MAIL		:{BLACK}Railtype: {GOLD}Transrapid{}{BLACK}Usage: {BLUE}Express mail{BLACK}{}{BLACK}Operators: {GREEN}Transrapid International {}{GOLD}NOTES: {BLACK}Can only be attached to Transrapid vehicles.
+STR_DESC_TRANSRAPID_GOODS		:{BLACK}Railtype: {GOLD}Transrapid{}{BLACK}Usage: {BLUE}Express goods{BLACK}{}{BLACK}Operators: {GREEN}Transrapid International{}{GOLD}NOTES: {BLACK}Can only be attached to Transrapid vehicles.
+
+STR_LIVERY_TRANSRAPID08_1	:(Emsland)
+STR_LIVERY_TRANSRAPID08_2	:(Shanghai)
+STR_LIVERY_TRANSRAPID07_1	:(Emsland)
+STR_LIVERY_TRANSRAPID07_2	:(Hamburg)
+STR_LIVERY_TRANSRAPID07_3	:(Max Bögl)
+
+#Parameter Strings
+STR_LOAD					:Load speed
+STR_LOAD_DESC				:Set the loading speed of this set
+STR_LOAD_0					:Slow
+STR_LOAD_1					:Normal (Default)
+STR_LOAD_2					:Fast
+
+STR_CC_0				:/4
+STR_CC_1				:/2
+STR_CC_1A				:/2 (Japan Set)
+STR_CC_2				:x1 (Default)
+STR_CC_2A				:x1 (Default) (2CC)
+STR_CC_5				:x1.25 (2CC)
+STR_CC_5A				:x1.25
+STR_CC_3				:x2
+STR_CC_4				:x4
+STR_CC_4A				:x4 (Japan Set)
+
+STR_DEPRECATED			:Deprecated
+STR_DEPRECATED_DESC		:This parameter has been removed in RIMS 1.5. It has not been removed to prevent unintended bugs, and to keep players from having to change the parameters manually in existing savefiles.
+
+
+STR_CC					:Purchase cost multiplier
+STR_RC					:Low speed running cost multiplier
+STR_CC_DESC				:This setting can be used to tweak the cost of the trains
+STR_RC_DESC				:This setting can be used to tweak the cost of the low speed trains
+STR_CC_HS				:High speed purchase cost multiplier
+STR_RC_HS				:High speed running cost multiplier
+STR_CC_HS_DESC			:This setting can be used to tweak the cost of the high speed trains
+STR_RC_HS_DESC			:This setting can be used to tweak the cost of the high speed trains
+
+STR_PARAM_PURCHASE		:Use company purchase window graphics instead of country flags
+STR_PARAM_PURCHASE_DESC	:If enabled the purchase window graphics will be like the graphics used for TIAS, Keio, E001 one off and NATS trainsets. If disabled, the purchase windows graphics will be like the graphics used for the 2CC trainset.
+
+STR_PARAM_2CC			:Use company colours graphics instead of real colours
+STR_PARAM_2CC_DESC		:If enabled the trains will use the company colours, instead of the real colours. This also disables real liveries. This way the trains match the look of the trains in the 2CC trainset.
+
+STR_PARAM_LSCAR			:Provide carriages to customise the length of several low-speed maglevs
+STR_PARAM_LSCAR_DESC	:If enabled the low speed maglevs will become multiple units to which you can add special multiple unit carriages. Only for the Linimo or Chinese low-speed maglevs.
+
+STR_PARAM_JAPANLS			:Japanese Low Speed
+STR_PARAM_JAPANLS_DESC		:Use Japanese low speed maglev trains
+STR_PARAM_JAPANHS			:Japanese High Speed
+STR_PARAM_JAPANHS_DESC		:Use Japanese high speed maglev trains
+STR_PARAM_GERMANYLS			:German Low Speed
+STR_PARAM_GERMANYLS_DESC	:Use German low speed maglev trains
+STR_PARAM_GERMANYHS			:German High Speed
+STR_PARAM_GERMANYHS_DESC	:Use German high speed maglev trains
+STR_PARAM_UK				:United Kingdom
+STR_PARAM_UK_DESC			:Use British maglev trains
+STR_PARAM_SK				:South Korea
+STR_PARAM_SK_DESC			:Use South Korean maglev trains
+STR_PARAM_CHINA				:China
+STR_PARAM_CHINA_DESC		:Use Chinese maglev trains
+
+STR_PARAM_CARGO				:Provide Goods Carriages for the Transrapid
+STR_PARAM_CARGO_DESC		:If enabled goods carriages for the Transrapid will become available. Disable this parameter if you don't want any maglev freight.
+
+# Misc Strings
+STR_DESC_PASS			:This generic carriage can be used to create maglev vehicles of the desired length. Passenger count, weight, length, etc. will automatically change.

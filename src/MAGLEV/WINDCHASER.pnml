@@ -1,0 +1,142 @@
+//WINDCHASER
+
+//Spritesets
+spriteset (SPRITESET_WINDCHASER, "grf/WINDCHASER.png") {
+	TEMP_TRAIN_DOUBLE_8(0,1,0)
+}
+spritegroup SPRITEGROUP_WINDCHASER {
+	loading: SPRITESET_WINDCHASER;
+	loaded:  SPRITESET_WINDCHASER;
+}
+
+spriteset (SPRITESET_WINDCHASER_BACK, "grf/WINDCHASER.png") {
+	TEMP_TRAIN_DOUBLE_8(48,1,0)
+}
+spritegroup SPRITEGROUP_WINDCHASER_BACK {
+	loading: SPRITESET_WINDCHASER_BACK;
+	loaded:  SPRITESET_WINDCHASER_BACK;
+}
+
+spriteset (SPRITESET_WINDCHASER_WAG, "grf/WINDCHASER.png") {
+	TEMP_CAR_8_NEW(24,1,0)
+}
+spritegroup SPRITEGROUP_WINDCHASER_WAG {
+	loading: SPRITESET_WINDCHASER_WAG;
+	loaded:  SPRITESET_WINDCHASER_WAG;
+}
+
+spriteset (SPRITESET_PURCH_WINDCHASER, "grf/WINDCHASER.png") {
+	TEMP_PURCH_DUAL_NEW(176,0,0,1)
+}
+spriteset (SPRITESET_PURCH_WINDCHASER_COMP, "grf/WINDCHASER.png") {
+	TEMP_PURCH_DUAL_NEW_COM(176,28,0,1)
+}
+
+switch(FEAT_TRAINS, SELF, switch_GRF_WINDCHASER, position_in_articulated_veh) {
+	1:		SPRITEGROUP_WINDCHASER_WAG;
+    2:      SPRITEGROUP_WINDCHASER_BACK;
+    SPRITEGROUP_WINDCHASER;
+}
+//2cc
+spriteset (SPRITESET_WINDCHASER_CC, "grf/WINDCHASER.png") {
+	TEMP_TRAIN_DOUBLE_8(72,1,0)
+}
+spritegroup SPRITEGROUP_WINDCHASER_CC {
+	loading: SPRITESET_WINDCHASER_CC;
+	loaded:  SPRITESET_WINDCHASER_CC;
+}
+
+spriteset (SPRITESET_WINDCHASER_BACK_CC, "grf/WINDCHASER.png") {
+	TEMP_TRAIN_DOUBLE_8(48+72,1,0)
+}
+spritegroup SPRITEGROUP_WINDCHASER_BACK_CC {
+	loading: SPRITESET_WINDCHASER_BACK_CC;
+	loaded:  SPRITESET_WINDCHASER_BACK_CC;
+}
+
+spriteset (SPRITESET_WINDCHASER_WAG_CC, "grf/WINDCHASER.png") {
+	TEMP_CAR_8_NEW(24+72,1,0)
+}
+spritegroup SPRITEGROUP_WINDCHASER_WAG_CC {
+	loading: SPRITESET_WINDCHASER_WAG_CC;
+	loaded:  SPRITESET_WINDCHASER_WAG_CC;
+}
+
+spriteset (SPRITESET_PURCH_WINDCHASER_CC, "grf/WINDCHASER.png") {
+	TEMP_PURCH_DUAL_NEW(176,56,0,1)
+}
+spriteset (SPRITESET_PURCH_WINDCHASER_COMP_CC, "grf/WINDCHASER.png") {
+	TEMP_PURCH_DUAL_NEW_COM(176,28+56,0,1)
+}
+
+switch(FEAT_TRAINS, SELF, switch_GRF_WINDCHASER_CC, position_in_articulated_veh) {
+	1:		SPRITEGROUP_WINDCHASER_WAG_CC;
+    2:      SPRITEGROUP_WINDCHASER_BACK_CC;
+    SPRITEGROUP_WINDCHASER_CC;
+}
+
+switch (FEAT_TRAINS, SELF, switch_articulated_WINDCHASER, extra_callback_info1) {
+    1..2: return ITEM_WINDCHASER; //use same vehicle for all parts
+    return CB_RESULT_NO_MORE_ARTICULATED_PARTS; //stop adding vehicle parts
+}
+
+switch(FEAT_TRAINS,SELF,switch_WINDCHASER_purchase,PURCHASE){
+    1: return SPRITESET_PURCH_WINDCHASER_COMP;
+       return SPRITESET_PURCH_WINDCHASER;
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASER_purchase_CC,PURCHASE){
+    1: return SPRITESET_PURCH_WINDCHASER_COMP_CC;
+       return SPRITESET_PURCH_WINDCHASER_CC;
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASER_purch_CC,PARAM2CC){
+    1: return switch_WINDCHASER_purchase_CC;
+       return switch_WINDCHASER_purchase;
+}
+switch(FEAT_TRAINS,SELF,switch_WINDCHASER_CC,PARAM2CC){
+    1: return switch_GRF_WINDCHASER_CC;
+       return switch_GRF_WINDCHASER;
+}
+
+item(FEAT_TRAINS, WINDCHASER, ITEM_WINDCHASER) {
+	property {
+		//Constants
+		model_life:	VEHICLE_NEVER_EXPIRES;
+		reliability_decay: 7;
+		vehicle_life: 35;
+		refittable_cargo_classes: bitmask(CC_PASSENGERS);
+		cargo_allow_refit: [PASS, TOUR];
+		LOADINGSPEED_URBAN
+		running_cost_base: RUNNING_COST_ELECTRIC;
+		sprite_id: SPRITE_ID_NEW_TRAIN;
+		track_type: THREEPHASE_MGLV;
+		ai_special_flag: AI_FLAG_PASSENGER;
+		refit_cost: 0;
+		default_cargo_type: PASS;
+		visual_effect_and_powered: visual_effect_and_powered(VISUAL_EFFECT_DISABLE, 0, ENABLE_WAGON_POWER);
+		effect_spawn_model_and_powered: EFFECT_SPAWN_MODEL_NONE;
+		engine_class: ENGINE_CLASS_MAGLEV;
+		
+		//Variables
+		name:	string(STR_NAME_WINDCHASER);
+		REGIONCAR(CHINA, NOREGION, LSCAR);
+		introduction_date:	date(2012,01,01);
+		cost_factor: 61;
+		running_cost_factor: 44;
+		speed: 120 km/h;
+		power: 446 kW;
+		cargo_capacity: 121;
+		weight: 18 tons;
+		air_drag_coefficient: 0.067;
+		
+		length: 8;
+		dual_headed: 0;
+		misc_flags: bitmask(TRAIN_FLAG_TILT, TRAIN_FLAG_MU);
+	}
+	graphics {
+		default: switch_WINDCHASER_CC; // Use this group
+		purchase: switch_WINDCHASER_purch_CC; // Use this set for the menu
+		additional_text: return string(STR_DESC_WINDCHASER);
+		can_attach_wagon: switch_can_attach_vehicle;
+		articulated_part: switch_articulated_WINDCHASER;
+	}
+}

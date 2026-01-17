@@ -1,0 +1,120 @@
+//Shamelessly stolem from the 2cc set.
+
+//Check vehicle ID of the vehicle in front of the unit wagon being attached
+//The offset for var 61 is determined by position_in_consist_from_end, which results in the last wagon before the vehicle being attached
+
+//Here's Item collections things whatever.
+//Assigns all trains a number and all sets a range
+
+//Induction
+#define RANGE_INDUCTION	0x01..0x0F
+#define RANGE_KOREAN	0x01..0x02
+
+#define ITEM_ECOBEE		0x01
+#define ITEM_ROTEM		0x02
+
+#define RANGE_HSST		0x03..0x05
+#define RANGE_HSST_X	0x03..0x04
+
+#define ITEM_HSST100S	0x03
+#define ITEM_HSST100L	0x04
+#define ITEM_LINIMO		0x05
+
+#define ITEM_BIRMINGHAM 0x06
+
+#define ITEM_LINIMOCAR	0x07
+#define ITEM_LINIMO_PASS	0x012
+//M-Bahn
+#define ITEM_M802		0x11
+//EDS
+#define RANGE_EDS		0x21..0x3F
+
+#define ITEM_L0SHINKANSEN	0x21
+#define RANGE_L0_CAR	0x31..0x32
+#define ITEM_L0_PASS	0x31
+#define ITEM_L0_MAIL	0x32
+
+#define RANGE_MLX		0x22..0x23
+#define ITEM_MLX01901	0x22
+#define ITEM_MLX011		0x23
+#define RANGE_MLX_CAR	0x33..0x34
+#define ITEM_MLX_PASS	0x33
+#define ITEM_MLX_MAIL	0x34
+//Three Phase
+#define RANGE_CHINA		0x41..0x4F
+#define ITEM_WINDCHASER	0x41
+#define ITEM_ZHUIFENGZHE	0x42
+#define ITEM_LINGLONG	0x43
+#define ITEM_WINDCHASERCAR	0x44
+#define ITEM_ZHUIFENGZHECAR	0x45
+#define ITEM_LINGLONGCAR	0x46
+#define ITEM_CHINA_PASS	0x47
+//Transrapid
+#define RANGE_TRANSRAPID	0x51..0x6F
+#define ITEM_TRANSRAPID07	0x51
+#define ITEM_TRANSRAPID08 	0x52
+#define ITEM_TRANSRAPID09	0x53
+#define RANGE_TRANSRAPID_CAR	0x61..0x6F
+#define ITEM_TRANSRAPID_PASS	0x61
+#define ITEM_TRANSRAPID_MAIL	0x62
+#define ITEM_TRANSRAPID_GOODS	0x63
+
+//Korean Maglevs do not accept anything other than themselves
+switch(FEAT_TRAINS, PARENT, switch_can_attach_KOREAN, [STORE_TEMP(position_in_consist_from_end, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]) {
+	RANGE_KOREAN: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	CB_RESULT_ATTACH_DISALLOW;
+}
+switch(FEAT_TRAINS, PARENT, switch_can_attach_LINIMO, [STORE_TEMP(position_in_consist_from_end, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]) {
+	ITEM_LINIMO: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	ITEM_LINIMOCAR: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	ITEM_LINIMO_PASS: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	CB_RESULT_ATTACH_DISALLOW;
+}
+switch(FEAT_TRAINS, PARENT, switch_can_attach_HSST, [STORE_TEMP(position_in_consist_from_end, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]) {
+	RANGE_HSST_X: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	CB_RESULT_ATTACH_DISALLOW;
+}
+switch(FEAT_TRAINS, PARENT, switch_can_attach_BIRMINGHAM, [STORE_TEMP(position_in_consist_from_end, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]) {
+	ITEM_BIRMINGHAM: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	CB_RESULT_ATTACH_DISALLOW;
+}
+switch(FEAT_TRAINS, PARENT, switch_can_attach_MLX, [STORE_TEMP(position_in_consist_from_end, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]) {
+	RANGE_MLX: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	RANGE_MLX_CAR: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	ITEM_L0SHINKANSEN: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	RANGE_L0_CAR: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	CB_RESULT_ATTACH_DISALLOW;
+}
+switch(FEAT_TRAINS, PARENT, switch_can_attach_CHINA, [STORE_TEMP(position_in_consist_from_end, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]) {
+	RANGE_CHINA: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	CB_RESULT_ATTACH_DISALLOW;
+}
+switch(FEAT_TRAINS, PARENT, switch_can_attach_TRANSRAPID, [STORE_TEMP(position_in_consist_from_end, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]) {
+	RANGE_TRANSRAPID: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	CB_RESULT_ATTACH_DISALLOW;
+}
+switch(FEAT_TRAINS, PARENT, switch_can_attach_MBAHN, [STORE_TEMP(position_in_consist_from_end, 0x10F), var[0x61, 0, 0x0000FFFF, 0xC6]]) {
+	ITEM_M802: CB_RESULT_ATTACH_ALLOW_IF_RAILTYPES; //Allow
+	CB_RESULT_ATTACH_DISALLOW;
+}
+
+/*	Check vehicle ID to determine which case we have. 
+ *	Engines are always allowed
+ *	Wagons depend on vehicle in front of it
+*/
+switch(FEAT_TRAINS, SELF, switch_can_attach_vehicle, vehicle_type_id) {
+	RANGE_KOREAN: switch_can_attach_KOREAN;
+	ITEM_LINIMO: switch_can_attach_LINIMO;
+	ITEM_LINIMOCAR: switch_can_attach_LINIMO;
+	ITEM_LINIMO_PASS: switch_can_attach_LINIMO;
+	RANGE_HSST_X: switch_can_attach_HSST;
+	ITEM_BIRMINGHAM: switch_can_attach_BIRMINGHAM;
+	ITEM_L0SHINKANSEN: switch_can_attach_MLX;
+	RANGE_L0_CAR: switch_can_attach_MLX;
+	RANGE_MLX: switch_can_attach_MLX;
+	RANGE_MLX_CAR: switch_can_attach_MLX;
+	RANGE_CHINA: switch_can_attach_CHINA;
+	RANGE_TRANSRAPID: switch_can_attach_TRANSRAPID;
+	ITEM_M802: switch_can_attach_MBAHN;
+	CB_RESULT_ATTACH_DISALLOW;
+}

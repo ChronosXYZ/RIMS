@@ -1,0 +1,7 @@
+*.tar
+*.grf
+*.nml
+.nmlcache/
+venv/
+RIMS/
+custom_tags.txt
