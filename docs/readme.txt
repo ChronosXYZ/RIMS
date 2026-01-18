@@ -1,4 +1,4 @@
-RIMS 1.6
+RIMS 1.6.1
 ===================================
 Real International Maglev Set
 

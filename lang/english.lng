@@ -3,7 +3,7 @@
 
 # General GRF strings
 STR_GRF_NAME	:{TITLE}
-STR_GRF_DESC	:Real International Maglev Set. Contains real maglev trains from around the world. Spiritual sucessor of MMT, Modern Maglev Trains. {}{COPYRIGHT}2017-2019 Erato Nysiad{}License:CC BY-NC 4.0
+STR_GRF_DESC	:Forked version of Real International Maglev Set. Contains real maglev trains from around the world. Spiritual sucessor of MMT, Modern Maglev Trains. {}{COPYRIGHT}2017-2019 Erato Nysiad{}License:CC BY-NC 4.0
 
 # Vehicle strings
 # Korean
